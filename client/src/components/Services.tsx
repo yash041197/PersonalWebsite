@@ -1,89 +1,141 @@
 import { motion } from "framer-motion";
 
-const serviceData = [
+// Skill data based on Yash's resume
+const skillData = [
   {
-    title: "Brand Strategy",
-    description: "We help define your brand's positioning, messaging, and personality to create a strong foundation for all visual and verbal expressions.",
-    services: [
-      "Brand Positioning & Messaging",
-      "Brand Architecture",
-      "Research & Insights",
-      "Competitive Analysis"
+    title: "Data Analysis & ML",
+    icon: "🧠",
+    description: "Expertise in transforming raw data into actionable insights using advanced statistical methods and machine learning techniques.",
+    skills: [
+      "Python (Pandas, NumPy, Scikit-learn)",
+      "Statistical Analysis & Modeling",
+      "Machine Learning & Predictive Analytics",
+      "Data Cleaning & Transformation"
     ]
   },
   {
-    title: "Visual Identity",
-    description: "We create distinctive visual systems that express your brand's personality and values across all touchpoints.",
-    services: [
-      "Logo & Identity Design",
-      "Visual Language Development",
-      "Typography Systems",
-      "Photography & Art Direction"
+    title: "Cloud & Infrastructure",
+    icon: "☁️",
+    description: "Experience with cloud platforms and infrastructure setup to optimize data processing pipelines and applications.",
+    skills: [
+      "Azure Databricks",
+      "AWS (Lambda, S3, API Gateway)",
+      "CI/CD Pipeline Implementation",
+      "Cloud Migration & Optimization"
     ]
   },
   {
-    title: "Digital Design",
-    description: "We design digital experiences that engage and delight users while achieving your business objectives.",
-    services: [
-      "Website Design & Development",
-      "E-commerce Experiences",
-      "User Interface Design",
-      "Digital Marketing Materials"
+    title: "Data Visualization",
+    icon: "📊",
+    description: "Creating compelling data visualizations that communicate complex information in intuitive and accessible ways.",
+    skills: [
+      "PowerBI Dashboard Development",
+      "Tableau Visualization",
+      "QlikSense",
+      "Custom Visual Reporting Solutions"
     ]
   },
   {
-    title: "Motion & Experience",
-    description: "We add dimension to brands through motion design and interaction that enhances storytelling.",
-    services: [
-      "Motion Identity",
-      "Animation & Micro-interactions",
-      "Video Production",
-      "Interactive Experiences"
+    title: "Programming & Automation",
+    icon: "💻",
+    description: "Building automated solutions and implementing advanced programming techniques to streamline processes.",
+    skills: [
+      "Python, SQL, Java, JavaScript",
+      "Process Automation with Selenium",
+      "ETL Pipeline Development",
+      "Web Scraping & Data Retrieval"
     ]
   }
 ];
 
-const ServiceBlock = ({ service, index }: { service: typeof serviceData[0], index: number }) => {
+// Apple-style skill card with icon
+const SkillCard = ({ skill, index }: { skill: typeof skillData[0], index: number }) => {
   return (
     <motion.div
+      className="relative bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-md"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.1 * index }}
     >
-      <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
-      <p className="text-lg">{service.description}</p>
-      <ul className="mt-6 space-y-2">
-        {service.services.map((item, idx) => (
-          <li key={idx} className="flex items-start">
-            <span className="mr-2">—</span>
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
+      {/* Large emoji icon - Apple style */}
+      <div className="absolute -right-5 -top-5 text-6xl opacity-10">
+        {skill.icon}
+      </div>
+      
+      <div className="p-8">
+        <h3 className="text-xl font-semibold mb-4">{skill.title}</h3>
+        <p className="text-gray-600 mb-6">{skill.description}</p>
+        
+        <ul className="space-y-3">
+          {skill.skills.map((item, idx) => (
+            <li key={idx} className="flex items-center">
+              <span className="text-primary mr-2 text-lg">•</span>
+              <span className="text-sm text-gray-700">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </motion.div>
   );
 };
 
+// Apple-style Skills section
 const Services = () => {
   return (
-    <section id="services" className="py-20 px-6 md:px-12 bg-neutral-100">
+    <section id="skills" className="py-24 px-6 md:px-12 bg-gray-50">
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Our Expertise</h2>
-          <p className="text-lg md:text-xl max-w-3xl mb-16">
-            We offer strategic brand development and purposeful design services to help businesses connect with their audience.
-          </p>
-        </motion.div>
+        {/* Apple-style heading */}
+        <div className="text-center mb-16">
+          <motion.p 
+            className="text-primary font-medium mb-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            EXPERTISE
+          </motion.p>
+          <motion.h2 
+            className="text-3xl md:text-5xl font-semibold mb-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            Technical Skills
+          </motion.h2>
+          <motion.p 
+            className="text-lg text-gray-600 max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            With over 5 years of experience, I've developed expertise across various domains of data science and technology.
+          </motion.p>
+        </div>
         
-        <div className="grid md:grid-cols-2 gap-x-16 gap-y-12">
-          {serviceData.map((service, index) => (
-            <ServiceBlock key={index} service={service} index={index} />
+        {/* Apple-style grid layout */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {skillData.map((skill, index) => (
+            <SkillCard key={index} skill={skill} index={index} />
           ))}
         </div>
+
+        {/* Apple-style call-to-action */}
+        <motion.div 
+          className="mt-20 text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
+        >
+          <a 
+            href="#experience" 
+            className="inline-flex items-center text-primary hover:underline"
+          >
+            <span>View my work experience</span>
+            <svg className="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </motion.div>
       </div>
     </section>
   );
