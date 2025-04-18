@@ -15,7 +15,7 @@ import CustomCursor from "@/components/CustomCursor";
 const Home = () => {
   useEffect(() => {
     // Update document title
-    document.title = "Avenues Life - Brand Agency";
+    document.title = "Yash Pandya - Data Scientist Portfolio";
     
     // Smooth scroll for anchor links
     const handleAnchorClick = (e: MouseEvent) => {
@@ -47,20 +47,22 @@ const Home = () => {
   }, []);
   
   return (
-    <>
+    <div className="min-h-screen bg-white text-black overflow-hidden">
       <CustomCursor />
       <Header />
       <MobileMenu />
-      <Hero />
-      <Marquee />
-      <FeaturedProjects />
-      <Services />
-      <Process />
-      <Testimonials />
-      <About />
-      <Contact />
+      <main>
+        <Hero />
+        <Marquee />
+        <FeaturedProjects />
+        <Services />
+        <Process />
+        <Testimonials />
+        <About />
+        <Contact />
+      </main>
       <Footer />
-    </>
+    </div>
   );
 };
 
