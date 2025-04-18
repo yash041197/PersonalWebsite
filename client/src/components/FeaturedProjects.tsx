@@ -12,7 +12,9 @@ const projects = [
       "Created customized bot behavior for different website structures",
       "Automated AWS data pipeline using Python"
     ],
-    image: "https://images.unsplash.com/photo-1597733336794-12d05021d510?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80"
+    // Using a reliable stored image with width/height attributes for Core Web Vitals
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80",
+    color: "from-blue-400 to-blue-600"
   },
   {
     id: 2,
@@ -24,7 +26,9 @@ const projects = [
       "Deployed Lambda functions with CI/CD pipelines",
       "Optimized critical processes in the application lifecycle"
     ],
-    image: "https://images.unsplash.com/photo-1560732488-7b5f4d54f4e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80"
+    // Optimized image source
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80",
+    color: "from-purple-400 to-blue-500"
   },
   {
     id: 3,
@@ -36,7 +40,9 @@ const projects = [
       "Improved data processing speed by 30%",
       "Enhanced communication between business teams and developers"
     ],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80"
+    // Reliable image source with CDN
+    image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80",
+    color: "from-green-400 to-emerald-600"
   },
   {
     id: 4,
@@ -48,11 +54,13 @@ const projects = [
       "Provided training to team members on data quality standards",
       "Enhanced embryo classification accuracy"
     ],
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80"
+    // More reliable image source
+    image: "https://images.unsplash.com/photo-1507146153580-69a1fe6d8aa1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80",
+    color: "from-red-400 to-orange-500"
   }
 ];
 
-// Apple-style project card with gradient hover effect
+// Enhanced Apple-style project card with interactive elements and Core Web Vitals optimizations
 const ProjectCard = ({ project, index }: { project: typeof projects[0], index: number }) => {
   return (
     <motion.div 
@@ -60,34 +68,85 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0], index: n
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
+      whileHover={{ y: -8 }}
     >
-      <div className="relative overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md hover:-translate-y-1">
-        <div className="aspect-video overflow-hidden">
+      <div className="relative overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md">
+        {/* Image with overlay animation on hover */}
+        <div className="aspect-video overflow-hidden relative">
+          {/* Preload with explicit width/height for better CLS */}
           <img 
             src={project.image} 
             alt={project.title} 
             className="w-full h-full object-cover transition duration-700 ease-in-out group-hover:scale-105"
+            width="800"
+            height="450"
+            loading="lazy"
           />
+          
+          {/* Apple-style overlay on hover */}
+          <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-30 transition-opacity duration-300`}></div>
+          
+          {/* Interactive icon on hover */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <motion.div 
+              className="bg-white/80 backdrop-blur-sm rounded-full p-4 hover:bg-white transition-colors duration-200"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            </motion.div>
+          </div>
         </div>
         
         <div className="p-6 md:p-8">
-          <div className="mb-4">
-            <span className="text-xs font-medium text-primary bg-blue-50 rounded-full py-1 px-2">
+          {/* Animated tag */}
+          <motion.div 
+            className="mb-4"
+            whileHover={{ scale: 1.05 }}
+          >
+            <span className="text-xs font-medium text-primary bg-blue-50 rounded-full py-1 px-2 inline-block">
               {project.category}
             </span>
-          </div>
+          </motion.div>
           
-          <h3 className="text-xl md:text-2xl font-semibold mb-3">{project.title}</h3>
+          <h3 className="text-xl md:text-2xl font-semibold mb-3 group-hover:text-primary transition-colors duration-200">{project.title}</h3>
           <p className="text-gray-600 mb-4">{project.description}</p>
           
           <div className="space-y-2">
             {project.features.map((feature, idx) => (
               <div key={idx} className="flex items-start">
-                <span className="text-primary mr-2">•</span>
+                <motion.span 
+                  className="text-primary mr-2"
+                  initial={{ opacity: 0.5 }}
+                  whileHover={{ opacity: 1, scale: 1.2 }}
+                >
+                  •
+                </motion.span>
                 <span className="text-sm text-gray-600">{feature}</span>
               </div>
             ))}
           </div>
+          
+          {/* Apple-style "Learn More" button */}
+          <motion.div 
+            className="mt-6 flex justify-end"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 + (index * 0.1) }}
+          >
+            <a 
+              href="#" 
+              className="text-sm font-medium text-primary inline-flex items-center transition-colors hover:text-blue-700"
+            >
+              <span>Learn more</span>
+              <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </motion.div>
         </div>
       </div>
     </motion.div>
