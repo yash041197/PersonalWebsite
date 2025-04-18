@@ -1,8 +1,11 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useDragControls, PanInfo } from "framer-motion";
 
+// Enhanced mobile menu with touch features for an Apple-like experience
 const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const dragControls = useDragControls();
   
   useEffect(() => {
     const handleToggleMobileMenu = (e: Event) => {
@@ -14,10 +17,27 @@ const MobileMenu = () => {
     
     window.addEventListener('toggleMobileMenu', handleToggleMobileMenu);
     
+    // Handle touch events outside the menu
+    const handleTouchOutside = (e: TouchEvent) => {
+      if (isOpen && menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        closeMobileMenu();
+      }
+    };
+    
+    document.addEventListener('touchend', handleTouchOutside);
+    
     return () => {
       window.removeEventListener('toggleMobileMenu', handleToggleMobileMenu);
+      document.removeEventListener('touchend', handleTouchOutside);
     };
-  }, []);
+  }, [isOpen]);
+  
+  // Handle touch gestures - swipe down to close
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    if (info.offset.y > 100) {
+      closeMobileMenu();
+    }
+  };
   
   const closeMobileMenu = () => {
     setIsOpen(false);
@@ -31,22 +51,38 @@ const MobileMenu = () => {
       y: -20,
       transition: {
         staggerChildren: 0.05,
-        staggerDirection: -1
+        staggerDirection: -1,
+        ease: [0.32, 0.72, 0, 1] // Apple-style easing
       }
     },
     open: {
       opacity: 1,
       y: 0,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
+        staggerChildren: 0.07,
+        delayChildren: 0.1,
+        ease: [0.32, 0.72, 0, 1] // Apple-style easing
       }
     }
   };
 
   const itemVariants = {
-    closed: { opacity: 0, y: -10 },
-    open: { opacity: 1, y: 0 }
+    closed: { 
+      opacity: 0, 
+      y: -15,
+      transition: {
+        duration: 0.3,
+        ease: [0.32, 0.72, 0, 1] // Apple-style easing
+      }
+    },
+    open: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.4,
+        ease: [0.32, 0.72, 0, 1] // Apple-style easing
+      }
+    }
   };
   
   return (
@@ -59,16 +95,39 @@ const MobileMenu = () => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          {/* Apple-style blurred backdrop */}
-          <div className="absolute inset-0 backdrop-blur-lg bg-white/90"></div>
-          
-          {/* Mobile menu content */}
+          {/* Apple-style blurred backdrop with touch feedback */}
           <motion.div 
+            className="absolute inset-0 backdrop-blur-lg bg-white/90"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={closeMobileMenu}
+          />
+          
+          {/* Swipe indicator at the top - Apple style */}
+          <div className="absolute top-4 left-0 right-0 flex justify-center pointer-events-none">
+            <div className="w-12 h-1 bg-gray-300 rounded-full opacity-70"></div>
+          </div>
+          
+          {/* Mobile menu content with drag-to-close functionality */}
+          <motion.div 
+            ref={menuRef}
             className="relative h-full p-8 flex flex-col z-50"
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ 
+              duration: 0.4, 
+              ease: [0.32, 0.72, 0, 1] // Apple-style easing
+            }}
+            drag="y"
+            dragDirectionLock
+            dragControls={dragControls}
+            dragConstraints={{ top: 0, bottom: 0 }}
+            dragElastic={0.1}
+            onDragEnd={handleDragEnd}
+            dragTransition={{ bounceStiffness: 300, bounceDamping: 20 }}
           >
             <div className="flex justify-end mb-12">
               <button 
