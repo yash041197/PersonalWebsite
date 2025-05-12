@@ -94,7 +94,6 @@ const Home = () => {
         <FeaturedProjects />
         <Services />
         <Process />
-        <Testimonials />
         <About />
         <Contact />
       </main>

@@ -1,5 +1,7 @@
+import { Item } from "@radix-ui/react-accordion";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
+import myimage from "/home/yash041197/PersonalWebsite/attached_assets/yash.jpg";
 
 // Skills with icons
 const skills = [
@@ -24,6 +26,9 @@ const skills = [
     description: "Building automated pipelines and workflows to streamline data processing tasks."
   }
 ];
+
+
+  
 
 // Apple-style interactive skill card with parallax effect
 const SkillCard = ({ skill, index }: { skill: typeof skills[0], index: number }) => {
@@ -120,14 +125,17 @@ const About = () => {
         </div>
         
         {/* Two-column layout with Apple-style design */}
+        
         <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
           {/* Left column with profile image and parallax effect */}
+          
           <motion.div
             className="relative overflow-hidden rounded-2xl aspect-square"
             style={{ y: imageY }}
           >
             <img 
-              src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+             // src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+              src = {myimage} 
               alt="Yash Pandya - Data Scientist" 
               className="w-full h-full object-cover rounded-2xl"
               width="600"

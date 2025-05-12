@@ -65,7 +65,7 @@ const Footer = () => {
           </div>
           
           {/* Column 4 - Newsletter - Apple style */}
-          <div>
+          {/*<div>
             <h3 className="text-sm font-medium mb-4">Stay Updated</h3>
             <p className="text-sm text-gray-600 mb-3">
               Subscribe to receive updates on my latest projects and data science insights.
@@ -80,8 +80,8 @@ const Footer = () => {
                 Subscribe
               </button>
             </div>
-          </div>
-        </div>
+          </div>*/}
+      </div>
         
         {/* Apple-style footer bottom */}
         <div className="pt-8 border-t border-gray-100">

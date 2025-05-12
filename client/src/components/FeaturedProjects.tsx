@@ -29,7 +29,8 @@ const projects = [
       "Optimized critical processes in the application lifecycle"
     ],
     // Optimized image source
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80",
+    //https://images.unsplash.com/photo-1667372283496-893f0b1e7c16?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+    image: "https://images.unsplash.com/photo-1667372283496-893f0b1e7c16?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80",
     color: "from-purple-400 to-blue-500"
   },
   {
@@ -57,7 +58,8 @@ const projects = [
       "Enhanced embryo classification accuracy"
     ],
     // More reliable image source
-    image: "https://images.unsplash.com/photo-1507146153580-69a1fe6d8aa1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80",
+    //https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?q=80&w=2946&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+    image: "https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80",
     color: "from-red-400 to-orange-500"
   }
 ];
