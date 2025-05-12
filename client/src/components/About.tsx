@@ -1,7 +1,7 @@
 import { Item } from "@radix-ui/react-accordion";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
-import myimage from "/home/yash041197/PersonalWebsite/attached_assets/yash.jpg";
+import myimage from "../assets/yash.jpg";
 
 // Skills with icons
 const skills = [
