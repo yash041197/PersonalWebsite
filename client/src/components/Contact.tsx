@@ -70,18 +70,22 @@ const Contact = () => {
     }
     
     try {
-      // This would be replaced with an actual API call in a real application
-      // In this demo, we're just simulating a successful submission
-      console.log("Form submitted:", data);
-      
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 800));
-      
-      // Success animation
-      controls.start({
-        scale: [1, 1.03, 1],
-        transition: { duration: 0.4 }
+      // --- CHANGE API CALL URL HERE ---
+      const response = await fetch('/api/contact', { // Changed from /api/send-email to /api/contact
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to send message');
+      }
+  
+      const successData = await response.json();
+      console.log("Form submitted successfully:", successData);
       
       toast({
         title: "Message sent!",
@@ -90,16 +94,11 @@ const Contact = () => {
       
       reset();
       setActiveField(null);
-    } catch (error) {
-      // Error animation
-      controls.start({
-        x: [0, -10, 10, -5, 5, 0],
-        transition: { duration: 0.5 }
-      });
-      
+    } catch (error: any) {
+      console.error("Error sending email:", error);
       toast({
         title: "Something went wrong",
-        description: "Please try again later.",
+        description: error.message || "Please try again later.",
         variant: "destructive",
       });
     } finally {

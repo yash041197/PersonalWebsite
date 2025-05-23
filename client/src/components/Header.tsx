@@ -72,6 +72,8 @@ const Header = () => {
         </nav>
         
         {/* Mobile Menu Button - Apple style */}
+        
+        
         <button 
           className="z-10 md:hidden focus:outline-none relative" 
           aria-label="Toggle menu"
@@ -83,6 +85,7 @@ const Header = () => {
             <span className={`block w-6 h-0.5 bg-black transition-transform duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
           </div>
         </button>
+      
       </div>
     </header>
   );
