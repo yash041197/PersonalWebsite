@@ -1,3 +1,5 @@
+// In your MobileMenu.tsx file:
+
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useDragControls, PanInfo } from "framer-motion";
 
@@ -42,6 +44,8 @@ const MobileMenu = () => {
   const closeMobileMenu = () => {
     setIsOpen(false);
     document.body.style.overflow = '';
+    // IMPORTANT: Dispatch event to tell Header to close too
+    window.dispatchEvent(new CustomEvent('toggleMobileMenu', { detail: { isOpen: false } }));
   };
   
   // Menu animation variants for Apple-like transition
@@ -69,7 +73,7 @@ const MobileMenu = () => {
   const itemVariants = {
     closed: { 
       opacity: 0, 
-      y: -15,
+      y: -15, // Adjusted from 10 to -15 for smoother slide-in from top
       transition: {
         duration: 0.3,
         ease: [0.32, 0.72, 0, 1] // Apple-style easing
@@ -89,7 +93,7 @@ const MobileMenu = () => {
     <AnimatePresence>
       {isOpen && (
         <motion.div 
-          className="fixed inset-0 md:hidden z-40"
+          className="fixed inset-0 md:hidden z-40" // Adjust z-index if Header is z-50 to ensure MobileMenu is below it
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -102,10 +106,11 @@ const MobileMenu = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            onClick={closeMobileMenu}
-          />
+            onClick={closeMobileMenu} // This is good for tapping outside
+           />
           
           {/* Swipe indicator at the top - Apple style */}
+          {/* Ensure this is styled to be visible *above* the menu content, but not clickable */}
           <div className="absolute top-4 left-0 right-0 flex justify-center pointer-events-none">
             <div className="w-12 h-1 bg-gray-300 rounded-full opacity-70"></div>
           </div>
@@ -113,7 +118,7 @@ const MobileMenu = () => {
           {/* Mobile menu content with drag-to-close functionality */}
           <motion.div 
             ref={menuRef}
-            className="relative h-full p-8 flex flex-col z-50"
+            className="relative h-full pt-20 px-8 pb-8 flex flex-col z-50" // z-50 for content within z-40 parent
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
@@ -129,6 +134,8 @@ const MobileMenu = () => {
             onDragEnd={handleDragEnd}
             dragTransition={{ bounceStiffness: 300, bounceDamping: 20 }}
           >
+            {/* REMOVE THIS SECTION: No internal 'X' button here */}
+            {/*
             <div className="flex justify-end mb-12">
               <button 
                 className="text-gray-800 focus:outline-none" 
@@ -140,7 +147,8 @@ const MobileMenu = () => {
                 </svg>
               </button>
             </div>
-            
+            */}
+      
             {/* Menu items with Apple-style staggered animation */}
             <motion.nav 
               className="flex-1"
@@ -150,10 +158,11 @@ const MobileMenu = () => {
               exit="closed"
             >
               <ul className="flex flex-col space-y-6 text-2xl font-light">
+                {/* Keep these links as they are */}
                 <motion.li variants={itemVariants}>
                   <a 
                     href="#projects" 
-                    onClick={closeMobileMenu} 
+                    onClick={closeMobileMenu} // Still close menu when clicking a link
                     className="block py-2 text-gray-800 hover:text-primary transition-colors"
                   >
                     Projects
