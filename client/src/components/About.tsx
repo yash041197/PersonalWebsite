@@ -1,4 +1,3 @@
-import { Item } from "@radix-ui/react-accordion";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
 import myimage from "../assets/yash.jpg";
@@ -6,24 +5,24 @@ import myimage from "../assets/yash.jpg";
 // Skills with icons
 const skills = [
   {
-    name: "Machine Learning",
-    icon: "💡",
-    description: "Deep expertise in developing and optimizing machine learning models for real-world applications."
+    name: "AI Platforms",
+    icon: "🧠",
+    description: "Building the \"internal brain\" of products: RAG, LLM integration and AI that works on real-world data."
   },
   {
-    name: "Data Visualization",
-    icon: "📊",
-    description: "Creating intuitive and insightful visualizations to communicate complex data patterns."
+    name: "Modernisation",
+    icon: "🔁",
+    description: "Making legacy systems understandable, mapping their logic and lineage, and carrying them onto modern stacks."
   },
   {
-    name: "Cloud Computing",
+    name: "Cloud & Reliability",
     icon: "☁️",
-    description: "Experience with Azure and AWS platforms for scalable and efficient data processing."
+    description: "Secure, highly available systems on Azure and AWS with clean separation between build and live."
   },
   {
-    name: "Automation",
-    icon: "⚙️",
-    description: "Building automated pipelines and workflows to streamline data processing tasks."
+    name: "Technical Leadership",
+    icon: "🧭",
+    description: "Leading squads that turn customer needs into simple, dependable features."
   }
 ];
 
@@ -65,12 +64,11 @@ const SkillCard = ({ skill, index }: { skill: typeof skills[0], index: number })
 
 // Apple-style horizontally scrolling timeline for achievements
 const achievements = [
-  { year: "2018", title: "Started Career", description: "Began journey in data science at Tata Consultancy Service" },
-  { year: "2019", title: "First Major Project", description: "Led cloud migration project with significant performance improvements" },
-  { year: "2021", title: "Advanced Degree", description: "Started Masters in Data Science at Bournemouth University" },
-  { year: "2022", title: "Healthcare Analytics", description: "Applied data science in healthcare at The Hospital Fertility Group" },
-  { year: "2023", title: "Certifications", description: "Achieved multiple professional certifications in data science" },
-  { year: "2024", title: "Current Focus", description: "Working on advanced machine learning models and consulting" }
+  { year: "2019", title: "Started Career", description: "Developer at Tata Consultancy Services: automation bots and AWS migration" },
+  { year: "2021", title: "Healthcare Data", description: "Joined The Hospital Fertility Group; began Master's at Bournemouth University" },
+  { year: "2023", title: "MSc in AI", description: "Graduated in Data Science & AI; joined Acorn Fertility building clinical AI tools" },
+  { year: "2025", title: "CTO, omniPA.ai", description: "Leading technology for an AI personal assistant and Life OS platform" },
+  { year: "2026", title: "Lead AI Engineer", description: "Leading AI-driven legacy modernisation at DigiColab" }
 ];
 
 // Apple-style About section with scroll animations
@@ -120,7 +118,7 @@ const About = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            A passionate Data Scientist dedicated to transforming complex data into valuable insights and solutions.
+            An AI Systems & Platform Engineer who turns messy, manual processes into smart, automated systems.
           </motion.p>
         </div>
         
@@ -136,7 +134,7 @@ const About = () => {
             <img 
              // src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
               src = {myimage} 
-              alt="Yash Pandya - Data Scientist" 
+              alt="Yash Pandya - AI Systems & Platform Engineer" 
               className="w-full h-full object-cover rounded-2xl"
               width="600"
               height="600"
@@ -156,13 +154,13 @@ const About = () => {
             >
               <h3 className="text-2xl font-semibold mb-4">My Journey</h3>
               <p className="text-gray-700 mb-4">
-                As a Data Scientist with over 5 years of experience, I've developed expertise in transforming complex data into actionable insights. My journey began at Tata Consultancy Services, where I honed my skills in data processing and machine learning.
+                I build the workflows and automation layers that let AI work safely with real-world data. My journey began at Tata Consultancy Services, writing bots for legacy systems and moving data to the cloud. That work taught me how much value is locked inside old software.
               </p>
               <p className="text-gray-700 mb-4">
-                I pursued my Master's in Data Science and AI from Bournemouth University to deepen my theoretical knowledge and practical skills. This education, combined with my industry experience, has enabled me to deliver impactful data solutions across various domains.
+                After a Master's in Data Science and AI at Bournemouth University, I spent several years in healthcare, building clinical AI tools and the bridge software that connects them to sensitive, API-less databases.
               </p>
               <p className="text-gray-700">
-                My work in healthcare analytics at fertility clinics has been particularly meaningful, where data-driven insights directly contribute to improving patient outcomes and operational efficiency.
+                Today I lead AI engineering on enterprise legacy modernisation and serve as part-time CTO of omniPA.ai. Both are Python and RAG platforms built for organisations where accuracy, privacy and compliance are not optional.
               </p>
             </motion.div>
             
@@ -194,9 +192,9 @@ const About = () => {
                   transition={{ duration: 0.5, type: "spring", delay: 0.1 }}
                   viewport={{ once: true }}
                 >
-                  15+
+                  2
                 </motion.div>
-                <div className="text-sm text-gray-500">Projects</div>
+                <div className="text-sm text-gray-500">Leadership Roles</div>
               </div>
               <div className="text-center p-4 bg-gray-50 rounded-xl">
                 <motion.div 
@@ -206,7 +204,7 @@ const About = () => {
                   transition={{ duration: 0.5, type: "spring", delay: 0.2 }}
                   viewport={{ once: true }}
                 >
-                  5
+                  7
                 </motion.div>
                 <div className="text-sm text-gray-500">Certifications</div>
               </div>

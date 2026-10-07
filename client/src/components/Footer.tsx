@@ -14,7 +14,7 @@ const Footer = () => {
               <h1 className="text-2xl font-semibold tracking-tight">Yash Pandya</h1>
             </a>
             <p className="text-sm text-gray-600 mb-4">
-              Data Scientist with expertise in machine learning, data analysis, and creating impactful data solutions.
+              AI Systems &amp; Platform Engineer building RAG platforms, automation and legacy modernisation for regulated industries.
             </p>
           </div>
           
@@ -68,7 +68,7 @@ const Footer = () => {
           {/*<div>
             <h3 className="text-sm font-medium mb-4">Stay Updated</h3>
             <p className="text-sm text-gray-600 mb-3">
-              Subscribe to receive updates on my latest projects and data science insights.
+              Subscribe to receive updates on my latest projects and AI engineering insights.
             </p>
             <div className="flex">
               <input 

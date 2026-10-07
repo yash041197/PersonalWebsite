@@ -13,9 +13,9 @@ const Hero = () => {
   
   // Skills with consistent animations
   const skills = [
-    "Python", "SQL", "Machine Learning", "Data Analysis", 
-    "Azure", "AWS", "Pandas", "TensorFlow", "PySpark", 
-    "PowerBI", "Tableau"
+    "Python", "FastAPI", "Async", "RAG", "LLMs",
+    "Agentic Workflows", "Azure", "AWS", "PostgreSQL",
+    "React Native", "Legacy Integration", "Data Lineage"
   ];
   
   // Touch event handlers for the stats card
@@ -58,7 +58,7 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
             >
-              Yash Pandya — Data Scientist
+              Yash Pandya — AI Systems & Platform Engineer
             </motion.h1>
             
             {/* Responsive text sizing for better mobile experience */}
@@ -68,7 +68,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.32, 0.72, 0, 1] }}
             >
-              Transforming data into impactful solutions
+              Building the intelligence layer behind modern platforms
             </motion.h2>
             
             <motion.p
@@ -77,8 +77,8 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.32, 0.72, 0, 1] }}
             >
-              Data Scientist with 5+ years of experience developing research datasets and 
-              machine learning models that deliver business impact.
+              Technical leader with 5+ years of experience turning messy legacy systems and
+              private data into secure, AI-powered platforms for regulated industries.
             </motion.p>
             
             {/* Touch-optimized buttons with proper spacing on mobile */}
@@ -100,6 +100,14 @@ const Hero = () => {
                 className="inline-flex items-center justify-center rounded-full bg-gray-100 px-6 py-3.5 text-base font-medium text-gray-900 hover:bg-gray-200 active:bg-gray-300 transition-colors duration-300"
               >
                 View projects
+              </a>
+              
+              <a 
+                href="/Yash_Pandya_CV.pdf" 
+                download
+                className="inline-flex items-center justify-center rounded-full border border-gray-300 px-6 py-3.5 text-base font-medium text-gray-900 hover:bg-gray-100 active:bg-gray-200 transition-colors duration-300"
+              >
+                Download CV
               </a>
             </motion.div>
           </div>
@@ -134,28 +142,28 @@ const Hero = () => {
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   <p className="text-sm text-gray-500 mb-1 sm:mb-2">Experience</p>
-                  <p className="text-2xl sm:text-3xl font-semibold">5+ Years</p>
+                  <p className="text-xl sm:text-3xl font-semibold">5+ Years</p>
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <p className="text-sm text-gray-500 mb-1 sm:mb-2">Projects</p>
-                  <p className="text-2xl sm:text-3xl font-semibold">25+</p>
+                  <p className="text-sm text-gray-500 mb-1 sm:mb-2">Leadership</p>
+                  <p className="text-xl sm:text-3xl font-semibold">CTO &amp; Lead</p>
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <p className="text-sm text-gray-500 mb-1 sm:mb-2">Certifications</p>
-                  <p className="text-2xl sm:text-3xl font-semibold">5</p>
+                  <p className="text-sm text-gray-500 mb-1 sm:mb-2">Sectors</p>
+                  <p className="text-xl sm:text-3xl font-semibold">Health &amp; Gov</p>
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <p className="text-sm text-gray-500 mb-1 sm:mb-2">Technologies</p>
-                  <p className="text-2xl sm:text-3xl font-semibold">15+</p>
+                  <p className="text-sm text-gray-500 mb-1 sm:mb-2">Focus</p>
+                  <p className="text-xl sm:text-3xl font-semibold">RAG &amp; Agents</p>
                 </motion.div>
               </div>
             </motion.div>
