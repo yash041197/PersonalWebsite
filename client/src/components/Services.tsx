@@ -19,7 +19,7 @@ const skillData = [
     description: "Connecting language models to an organisation's private knowledge so answers are accurate, grounded and traceable.",
     skills: [
       "Retrieval-Augmented Generation (RAG)",
-      "LLM Integration (GPT-4o & Others)",
+      "LLM Integration & Orchestration",
       "Agentic Workflow Automation",
       "Grounded Answers with Source Citations"
     ]

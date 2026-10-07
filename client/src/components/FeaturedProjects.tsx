@@ -9,14 +9,14 @@ import modernisationImage from "../assets/modernisation.svg";
 const projects = [
   {
     id: 1,
-    title: "AI-Driven Legacy Modernisation Platform",
-    category: "Python, FastAPI, GPT-4o, RAG, Azure, PostgreSQL",
-    description: "An enterprise platform that reads complex legacy codebases, recovers the business logic buried inside them and helps teams carry it forward onto modern architecture without losing what the old system actually did.",
+    title: "Enterprise Legacy Modernisation Platform",
+    category: "Python, FastAPI, LLMs, RAG, Azure, PostgreSQL",
+    description: "An AI-assisted platform that analyses large legacy estates, recovers their embedded business rules and accelerates migration to modern, cloud-native architecture with full traceability.",
     features: [
-      "Reverse engineering complete: parsed source becomes clear dependency graphs, end-to-end data lineage and documentation",
-      "Now in forward engineering, generating modern equivalents directly from the parsed logic",
-      "AI chat with RAG search, so teams can question their code and get answers backed by real sources",
-      "Isolated dev and live environments on Azure, with plug-and-play onboarding on standard services"
+      "Automated reverse engineering: source parsed into dependency graphs, end-to-end data lineage and generated technical documentation",
+      "Forward engineering in progress: modern target code produced directly from the recovered logic",
+      "Codebase-aware AI assistant with retrieval-augmented search, returning cited answers across code and project documentation",
+      "Segregated development and production environments on Azure, with standardised client onboarding"
     ],
     image: modernisationImage,
     color: "from-blue-500 to-indigo-600"

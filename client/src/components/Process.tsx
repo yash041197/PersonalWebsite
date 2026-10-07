@@ -9,10 +9,10 @@ const experiences = [
     location: "London, England",
     description: "Leading AI engineering on an enterprise software-modernisation product.",
     achievements: [
-      "Leading development of an AI-assisted platform that turns complex legacy codebases into clear dependency graphs, lineage maps and documentation",
-      "Delivered the reverse-engineering and end-to-end lineage stages; now leading the forward-engineering phase onto modern architecture",
-      "Built a GPT-4o chat and RAG search layer so teams can question their code and project documents and get answers backed by sources",
-      "Set up separate Azure development and live environments, with plug-and-play onboarding on standard services such as PostgreSQL and Blob Storage"
+      "Lead the architecture and delivery of an AI-assisted modernisation platform that converts legacy codebases into dependency graphs, data lineage and technical documentation",
+      "Delivered the reverse-engineering and lineage capabilities; now leading forward engineering onto modern, cloud-native architecture",
+      "Designed a codebase-aware AI assistant with retrieval-augmented search, giving teams cited answers across code and project documentation",
+      "Established segregated Azure development and production environments and a standardised, low-effort client onboarding model"
     ]
   },
   {
