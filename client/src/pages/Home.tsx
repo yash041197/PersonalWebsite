@@ -7,7 +7,6 @@ import Marquee from "@/components/Marquee";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import Services from "@/components/Services";
 import Process from "@/components/Process";
-import Testimonials from "@/components/Testimonials";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -25,7 +24,7 @@ const Home = () => {
 
   useEffect(() => {
     // Update document title
-    document.title = "Yash Pandya - Data Scientist Portfolio";
+    document.title = "Yash Pandya - AI Systems & Platform Engineer";
     
     // Smooth scroll for anchor links
     const handleAnchorClick = (e: MouseEvent) => {

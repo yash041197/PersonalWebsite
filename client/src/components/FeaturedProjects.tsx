@@ -2,70 +2,96 @@ import { motion } from "framer-motion";
 import useTouchInteractions from "@/hooks/use-touch-interactions";
 import { useState } from "react";
 
-// Project data based on the resume
+import omnipaImage from "../assets/omnipa.webp";
+import modernisationImage from "../assets/modernisation.svg";
+
+// Selected work. Client engagements are described at a high level only.
 const projects = [
   {
     id: 1,
-    title: "Automated Web Scraping",
-    category: "Python, Selenium, Pandas, NumPy",
-    description: "Developed fully functional automatic bots using Python and Selenium to perform download operations from websites, streamlining data retrieval processes and enhancing efficiency.",
+    title: "AI-Driven Legacy Modernisation Platform",
+    category: "Python, FastAPI, GPT-4o, RAG, Azure, PostgreSQL",
+    description: "An enterprise platform that reads complex legacy codebases, recovers the business logic buried inside them and helps teams carry it forward onto modern architecture without losing what the old system actually did.",
     features: [
-      "Implemented error handling mechanisms with robust logging",
-      "Created customized bot behavior for different website structures",
-      "Automated AWS data pipeline using Python"
+      "Reverse engineering complete: parsed source becomes clear dependency graphs, end-to-end data lineage and documentation",
+      "Now in forward engineering, generating modern equivalents directly from the parsed logic",
+      "AI chat with RAG search, so teams can question their code and get answers backed by real sources",
+      "Isolated dev and live environments on Azure, with plug-and-play onboarding on standard services"
     ],
-    // Using a reliable stored image with width/height attributes for Core Web Vitals
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80",
-    color: "from-blue-400 to-blue-600"
+    image: modernisationImage,
+    color: "from-blue-500 to-indigo-600"
   },
   {
     id: 2,
-    title: "Cloud Migration to AWS",
-    category: "Python, AWS Lambda, FastAPI, Gateway",
-    description: "Implemented cloud-based solutions to optimize application performance, enhancing responsiveness and ensuring a robust user experience across development, testing, and production environments.",
+    title: "OmniPA: AI Life OS",
+    category: "Python, FastAPI, RAG, AWS, React Native",
+    description: "A personal AI assistant that brings email, schedule, shopping, travel and reminders into one conversational app. It understands your context and turns it into actions.",
     features: [
-      "Utilized AWS API Gateway for secure API management",
-      "Deployed Lambda functions with CI/CD pipelines",
-      "Optimized critical processes in the application lifecycle"
+      "Inbox intelligence that surfaces action items from email for one-tap Add or Skip",
+      "OmniChat: natural-language reminders and plans with push notifications",
+      "Shopping lists created from a photo; travel goals with budget, dates and deal search",
+      "Privacy-first permissions: emotion capture stores labels only, never images"
     ],
-    // Optimized image source
-    //https://images.unsplash.com/photo-1667372283496-893f0b1e7c16?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
-    image: "https://images.unsplash.com/photo-1667372283496-893f0b1e7c16?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80",
-    color: "from-purple-400 to-blue-500"
+    image: omnipaImage,
+    link: "https://omnipa.ai",
+    color: "from-teal-400 to-cyan-600"
   },
   {
     id: 3,
-    title: "Data Pipeline Optimization",
-    category: "Python, Azure, Databricks",
-    description: "Developed and optimized data processing pipelines on Azure Databricks, ensuring adherence to quality standards for real-time reporting and data transformation processes.",
+    title: "Clinical Outcome Prediction",
+    category: "Python, Machine Learning, Healthcare Integration",
+    description: "An AI-powered tool that helps clinicians predict treatment success, taken from first line of code to live use in the clinic.",
     features: [
-      "Documented test results and issues with Jira",
-      "Improved data processing speed by 30%",
-      "Enhanced communication between business teams and developers"
+      "85% prediction accuracy on treatment outcomes",
+      "Bridge software to pull data safely from sensitive databases without modern APIs",
+      "Automated data cleaning so records are always ready for clinical reporting"
     ],
-    // Reliable image source with CDN
     image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80",
     color: "from-green-400 to-emerald-600"
   },
   {
     id: 4,
-    title: "Embryo Assessment Algorithm",
-    category: "Python, TensorFlow, Neural Networks, PyTorch",
-    description: "Developed an algorithm using Python and AI to assess time-lapse images of an embryo's life cycle, utilizing advanced neural network models for accurate classification.",
+    title: "Lab Result Error Detection",
+    category: "Python, Automation, Dashboards",
+    description: "An automated alerting system that spots errors in lab results before they reach patients, plus dashboards that turned messy records into decisions.",
     features: [
-      "Implemented VGG and Inception CNN architecture",
-      "Provided training to team members on data quality standards",
-      "Enhanced embryo classification accuracy"
+      "Reduced human mistakes in lab testing by 30%",
+      "Clean, visual dashboards used by managers to run the hospital",
+      "Built for highly regulated healthcare data"
     ],
-    // More reliable image source
-    //https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?q=80&w=2946&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80",
+    color: "from-purple-400 to-blue-500"
+  },
+  {
+    id: 5,
+    title: "Embryo Assessment Algorithm",
+    category: "Python, TensorFlow, PyTorch, CNNs",
+    description: "A deep-learning model that assesses time-lapse images of an embryo's life cycle, using neural network architectures for accurate classification.",
+    features: [
+      "Implemented VGG and Inception CNN architectures",
+      "Trained team members on data quality standards",
+      "Improved embryo classification accuracy"
+    ],
     image: "https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80",
     color: "from-red-400 to-orange-500"
+  },
+  {
+    id: 6,
+    title: "Legacy Bots & Cloud Migration",
+    category: "Python, Selenium, AWS",
+    description: "Robot programs that did manual data entry into legacy systems with no modern connection points, plus a migration of key company data from on-premise storage to AWS.",
+    features: [
+      "Selenium bots with robust error handling and logging",
+      "On-premise to AWS migration for a faster, modern business",
+      "Recommendation tool that lifted sales results by 18%"
+    ],
+    image: "https://images.unsplash.com/photo-1667372283496-893f0b1e7c16?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80",
+    color: "from-sky-400 to-blue-600"
   }
 ];
 
 // Enhanced Apple-style project card with mobile-responsive touch interactions
-const ProjectCard = ({ project, index }: { project: typeof projects[0], index: number }) => {
+const ProjectCard = ({ project, index }: { project: (typeof projects)[number] & { link?: string }, index: number }) => {
   // State for modal preview (for mobile touch)
   const [isExpanded, setIsExpanded] = useState(false);
   
@@ -196,6 +222,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0], index: n
           </div>
           
           {/* Apple-style "Learn More" button with improved touch target */}
+          {project.link && (
           <motion.div 
             className="mt-6 flex justify-end"
             initial={{ opacity: 0, y: 10 }}
@@ -203,17 +230,21 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0], index: n
             transition={{ delay: 0.3 + (index * 0.1) }}
           >
             <motion.a 
-              href="#" 
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="text-sm font-medium text-primary inline-flex items-center transition-colors hover:text-blue-700 p-1 -m-1"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="mr-1">Learn more</span>
+              <span className="mr-1">Visit site</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </motion.a>
           </motion.div>
+          )}
         </div>
         
         {/* Apple-style touch feedback indicator */}
@@ -317,7 +348,7 @@ const FeaturedProjects = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Projects & Dashboards
+            Selected Work
           </motion.h2>
           <motion.p
             className="mt-4 text-gray-600 max-w-2xl mx-auto"
@@ -325,7 +356,7 @@ const FeaturedProjects = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Here are some of my data science and machine learning projects. You can also view the dashboards I've created for various use cases.
+            AI platforms, modernisation and healthcare systems I've designed and led, from start-up products to enterprise engagements.
           </motion.p>
         </div>
         
@@ -343,16 +374,16 @@ const FeaturedProjects = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <h3 className="text-2xl font-semibold mb-4">Want to see my dashboard designs?</h3>
+          <h3 className="text-2xl font-semibold mb-4">Want the deeper story?</h3>
           <p className="text-gray-600 mb-6">
-            I've created various data visualization dashboards using PowerBI, Tableau, and custom solutions.
-            Contact me to learn more about these projects.
+            Some of this work is under client confidentiality, so it is described at a high level here.
+            I'm happy to walk through the architecture, decisions and outcomes in a conversation.
           </p>
           <a 
             href="#contact" 
             className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-white hover:bg-blue-600 transition-colors duration-300"
           >
-            Request Dashboard Examples
+            Request a Walkthrough
           </a>
         </motion.div>
       </div>

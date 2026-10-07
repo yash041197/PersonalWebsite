@@ -8,7 +8,7 @@ const Marquee = () => {
             animation: 'marquee 30s linear infinite',
           }}
         >
-          <span className="text-2xl md:text-4xl px-6">• Brand Strategy • Visual Identity • Web Design • Digital Products • Motion Design • Brand Strategy • Visual Identity • Web Design • Digital Products • Motion Design</span>
+          <span className="text-2xl md:text-4xl px-6">• AI Platforms • RAG Systems • Legacy Modernisation • Python &amp; FastAPI • Cloud Architecture • AI Platforms • RAG Systems • Legacy Modernisation • Python &amp; FastAPI • Cloud Architecture</span>
         </div>
         <div 
           className="inline-block whitespace-nowrap absolute top-0"
@@ -17,7 +17,7 @@ const Marquee = () => {
             animationDelay: '15s',
           }}
         >
-          <span className="text-2xl md:text-4xl px-6">• Brand Strategy • Visual Identity • Web Design • Digital Products • Motion Design • Brand Strategy • Visual Identity • Web Design • Digital Products • Motion Design</span>
+          <span className="text-2xl md:text-4xl px-6">• AI Platforms • RAG Systems • Legacy Modernisation • Python &amp; FastAPI • Cloud Architecture • AI Platforms • RAG Systems • Legacy Modernisation • Python &amp; FastAPI • Cloud Architecture</span>
         </div>
       </div>
     </div>

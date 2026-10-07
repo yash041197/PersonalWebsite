@@ -227,7 +227,7 @@ const Contact = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              I'm open to discussing new opportunities, projects, or how data science can help your business grow.
+              I'm open to discussing new opportunities, projects, or how AI can help your business grow.
             </motion.p>
           </motion.div>
         </div>
@@ -322,7 +322,7 @@ const Contact = () => {
             >
               <h4 className="font-medium mb-2">Current Availability</h4>
               <p className="text-sm text-gray-600">
-                I'm currently available for freelance projects, contract work, or full-time opportunities in data science and analytics.
+                I'm currently available for freelance projects, contract work, or full-time opportunities in AI engineering and technical leadership.
               </p>
               
               {/* Apple-style active indicator animation */}

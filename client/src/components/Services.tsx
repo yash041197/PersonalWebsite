@@ -3,47 +3,47 @@ import { motion } from "framer-motion";
 // Skill data based on Yash's resume
 const skillData = [
   {
-    title: "Data Analysis & ML",
+    title: "Platform Backbone",
+    icon: "🧱",
+    description: "Designing the core engines that keep AI platforms fast, reliable and easy to extend as they scale.",
+    skills: [
+      "Python (FastAPI, Async, Pydantic)",
+      "API & Service Architecture",
+      "Event-Driven Workflows & Task Queues",
+      "PostgreSQL & Data Modelling"
+    ]
+  },
+  {
+    title: "Applied AI & RAG",
     icon: "🧠",
-    description: "Expertise in transforming raw data into actionable insights using advanced statistical methods and machine learning techniques.",
+    description: "Connecting language models to an organisation's private knowledge so answers are accurate, grounded and traceable.",
     skills: [
-      "Python (Pandas, NumPy, Scikit-learn)",
-      "Statistical Analysis & Modeling",
-      "Machine Learning & Predictive Analytics",
-      "Data Cleaning & Transformation"
+      "Retrieval-Augmented Generation (RAG)",
+      "LLM Integration (GPT-4o & Others)",
+      "Agentic Workflow Automation",
+      "Grounded Answers with Source Citations"
     ]
   },
   {
-    title: "Cloud & Infrastructure",
+    title: "Legacy & Systems Integration",
+    icon: "🔌",
+    description: "Bridging old systems and modern AI, from understanding what legacy software really does to moving it forward safely.",
+    skills: [
+      "Legacy Code Analysis & Reverse Engineering",
+      "Dependency & Data Lineage Mapping",
+      "Integration Middleware & Automation Bots",
+      "Modernisation onto Modern Architectures"
+    ]
+  },
+  {
+    title: "Cloud, Security & Regulated Data",
     icon: "☁️",
-    description: "Experience with cloud platforms and infrastructure setup to optimize data processing pipelines and applications.",
+    description: "Running platforms on Azure and AWS with the controls that healthcare and public-sector data demands.",
     skills: [
-      "Azure Databricks",
-      "AWS (Lambda, S3, API Gateway)",
-      "CI/CD Pipeline Implementation",
-      "Cloud Migration & Optimization"
-    ]
-  },
-  {
-    title: "Data Visualization",
-    icon: "📊",
-    description: "Creating compelling data visualizations that communicate complex information in intuitive and accessible ways.",
-    skills: [
-      "PowerBI Dashboard Development",
-      "Tableau Visualization",
-      "QlikSense",
-      "Custom Visual Reporting Solutions"
-    ]
-  },
-  {
-    title: "Programming & Automation",
-    icon: "💻",
-    description: "Building automated solutions and implementing advanced programming techniques to streamline processes.",
-    skills: [
-      "Python, SQL, Java, JavaScript",
-      "Process Automation with Selenium",
-      "ETL Pipeline Development",
-      "Web Scraping & Data Retrieval"
+      "Azure & AWS Architecture",
+      "Isolated Dev / Live Environments & CI/CD",
+      "Healthcare & Public-Sector Data Governance",
+      "High Availability & Monitoring"
     ]
   }
 ];
@@ -108,7 +108,7 @@ const Services = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            With over 5 years of experience, I've developed expertise across various domains of data science and technology.
+            Four areas I work across every day, from the backend engine to the AI layer and the cloud it runs on.
           </motion.p>
         </div>
         
