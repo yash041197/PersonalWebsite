@@ -98,13 +98,13 @@ const Footer = () => {
           </div>
           
           {/* Apple footer note */}
-          <motion.p 
+          <motion.p
             className="text-xs text-center text-gray-400 mt-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.5 }}
           >
-            Designed and developed with ❤️ | Last updated: April 2025
+            Designed and developed by Yash Pandya
           </motion.p>
         </div>
       </div>

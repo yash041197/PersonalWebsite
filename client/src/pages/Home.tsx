@@ -10,7 +10,6 @@ import Process from "@/components/Process";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import CustomCursor from "@/components/CustomCursor";
 import BackgroundAnimation from "@/components/BackgroundAnimation";
 
 const Home = () => {
@@ -83,7 +82,6 @@ const Home = () => {
       {/* Background animations */}
       <BackgroundAnimation />
       
-      <CustomCursor />
       <Header />
       <MobileMenu />
       

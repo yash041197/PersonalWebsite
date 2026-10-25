@@ -75,18 +75,6 @@
   animation: textReveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
 }
 
-.cursor-follow {
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(232, 74, 67, 0.5);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  mix-blend-mode: difference;
-  z-index: 9999;
-  transition: transform 0.1s ease;
-}
 
 .hover-underline {
   position: relative;
