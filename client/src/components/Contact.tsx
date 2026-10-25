@@ -109,29 +109,6 @@ const Contact = () => {
     setActiveField(null);
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 260,
-        damping: 20
-      }
-    }
-  };
 
   const ContactItem = ({
     icon,
@@ -163,10 +140,7 @@ const Contact = () => {
     ) : children;
 
     return (
-      <motion.div
-        className="flex items-start"
-        variants={itemVariants}
-      >
+      <div className="flex items-start">
         <motion.div
           className="bg-blue-50 p-3 rounded-lg mr-4 transition-colors duration-300 text-primary"
           whileHover={{ backgroundColor: "#EBF5FF", scale: 1.05 }}
@@ -183,7 +157,7 @@ const Contact = () => {
           <p className="text-sm font-medium text-gray-500 mb-1">{label}</p>
           {content}
         </div>
-      </motion.div>
+      </div>
     );
   };
 
@@ -228,27 +202,22 @@ const Contact = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="space-y-6 md:space-y-8"
-          >
-            <div
+          <div className="space-y-6 md:space-y-8">
+            <motion.div
               ref={contactCardRef}
               style={contactCardStyle}
               {...contactCardHandlers}
               className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 transition-all duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+              viewport={{ once: true }}
             >
-              <motion.h3
-                className="text-xl font-semibold mb-6"
-                variants={itemVariants}
-              >
+              <h3 className="text-xl font-semibold mb-6">
                 Contact Details
-              </motion.h3>
+              </h3>
 
-              <motion.div className="space-y-6">
+              <div className="space-y-6">
                 <ContactItem
                   icon={<Envelope size={20} weight="duotone" />}
                   label="Email"
@@ -292,22 +261,25 @@ const Contact = () => {
                     </motion.a>
                   </div>
                 </ContactItem>
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
 
             <motion.div
               ref={availabilityCardRef}
               style={availabilityCardStyle}
               {...availabilityCardHandlers}
-              variants={itemVariants}
               className="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-2xl transition-all duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1, ease: [0.32, 0.72, 0, 1] }}
+              viewport={{ once: true }}
             >
               <h4 className="font-medium mb-2">Current Availability</h4>
               <p className="text-sm text-gray-600">
                 I'm currently available for freelance projects, contract work, or full-time opportunities in AI engineering and technical leadership.
               </p>
             </motion.div>
-          </motion.div>
+          </div>
 
           <motion.div
             ref={formCardRef}
