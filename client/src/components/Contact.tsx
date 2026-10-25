@@ -1,8 +1,9 @@
 import { motion, useAnimation } from "framer-motion";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useToast } from "@/hooks/use-toast";
 import useTouchInteractions from "@/hooks/use-touch-interactions";
+import { Envelope, Phone, ChatCircleDots, LinkedinLogo, GithubLogo } from "@phosphor-icons/react";
 
 interface ContactFormData {
   name: string;
@@ -15,8 +16,7 @@ const Contact = () => {
   const { toast } = useToast();
   const { register, handleSubmit, reset, formState: { errors } } = useForm<ContactFormData>();
   const controls = useAnimation();
-  
-  // Apply touch interactions to contact card and form
+
   const {
     ref: contactCardRef,
     style: contactCardStyle,
@@ -27,7 +27,7 @@ const Contact = () => {
     enableTilt: true,
     maxTilt: 5
   });
-  
+
   const {
     ref: formCardRef,
     style: formCardStyle,
@@ -38,7 +38,7 @@ const Contact = () => {
     enableTilt: true,
     maxTilt: 4
   });
-  
+
   const {
     ref: availabilityCardRef,
     style: availabilityCardStyle,
@@ -49,17 +49,13 @@ const Contact = () => {
     enableTilt: true,
     maxTilt: 8
   });
-  
-  // Form submission animation ref
+
   const submitButtonRef = useRef<HTMLButtonElement>(null);
-  
-  // Detect if field is active/focused for enhanced mobile experience
   const [activeField, setActiveField] = useState<string | null>(null);
-  
+
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-    
-    // Button press animation
+
     if (submitButtonRef.current) {
       submitButtonRef.current.style.transform = 'scale(0.95)';
       setTimeout(() => {
@@ -68,30 +64,29 @@ const Contact = () => {
         }
       }, 150);
     }
-    
+
     try {
-      // --- CHANGE API CALL URL HERE ---
-      const response = await fetch('/api/contact', { // Changed from /api/send-email to /api/contact
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       });
-  
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || 'Failed to send message');
       }
-  
+
       const successData = await response.json();
       console.log("Form submitted successfully:", successData);
-      
+
       toast({
         title: "Message sent!",
         description: "Thank you for your message. I'll get back to you as soon as possible.",
       });
-      
+
       reset();
       setActiveField(null);
     } catch (error: any) {
@@ -105,17 +100,15 @@ const Contact = () => {
       setIsSubmitting(false);
     }
   };
-  
-  // Focus/blur handlers for animated form fields
+
   const handleFocus = (fieldName: string) => {
     setActiveField(fieldName);
   };
-  
+
   const handleBlur = () => {
     setActiveField(null);
   };
-  
-  // Animation variants for staggered animation
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -126,31 +119,30 @@ const Contact = () => {
       }
     }
   };
-  
+
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         type: "spring",
         stiffness: 260,
         damping: 20
-      } 
+      }
     }
   };
-  
-  // Apple-style card with icons interactive animation
-  const ContactItem = ({ 
-    icon, 
-    label, 
-    value, 
-    href, 
-    children 
-  }: { 
-    icon: React.ReactNode, 
-    label: string, 
-    value?: string, 
+
+  const ContactItem = ({
+    icon,
+    label,
+    value,
+    href,
+    children
+  }: {
+    icon: React.ReactNode,
+    label: string,
+    value?: string,
     href?: string,
     children?: React.ReactNode
   }) => {
@@ -163,20 +155,20 @@ const Contact = () => {
       tapScale: 0.97,
       enableTilt: false
     });
-    
+
     const content = value ? (
       <a href={href} className="text-base text-gray-700 hover:text-primary transition-colors">
         {value}
       </a>
     ) : children;
-    
+
     return (
-      <motion.div 
+      <motion.div
         className="flex items-start"
         variants={itemVariants}
       >
-        <motion.div 
-          className="bg-blue-50 p-3 rounded-lg mr-4 transition-colors duration-300"
+        <motion.div
+          className="bg-blue-50 p-3 rounded-lg mr-4 transition-colors duration-300 text-primary"
           whileHover={{ backgroundColor: "#EBF5FF", scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -194,153 +186,129 @@ const Contact = () => {
       </motion.div>
     );
   };
-  
+
   return (
     <section id="contact" className="py-20 sm:py-24 px-6 md:px-12 bg-gray-50">
       <div className="max-w-7xl mx-auto">
-        {/* Apple-style heading with gradient background */}
         <div className="text-center mb-12 md:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+            viewport={{ once: true }}
           >
-            <motion.p 
+            <motion.p
               className="text-primary font-medium mb-2"
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              whileInView={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
             >
               GET IN TOUCH
             </motion.p>
-            <motion.h2 
+            <motion.h2
               className="text-3xl md:text-5xl font-semibold mb-4"
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              whileInView={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
             >
               Let's Collaborate
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="text-lg text-gray-600 max-w-2xl mx-auto"
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              whileInView={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
             >
               I'm open to discussing new opportunities, projects, or how AI can help your business grow.
             </motion.p>
           </motion.div>
         </div>
 
-        {/* Apple-style two column layout - stack on mobile, side-by-side on larger screens */}
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
-          {/* Contact information with Apple-style cards and animations */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true }}
             className="space-y-6 md:space-y-8"
           >
-            {/* Contact card with 3D touch effect */}
             <div
               ref={contactCardRef}
               style={contactCardStyle}
               {...contactCardHandlers}
               className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 transition-all duration-300"
             >
-              <motion.h3 
+              <motion.h3
                 className="text-xl font-semibold mb-6"
                 variants={itemVariants}
               >
                 Contact Details
               </motion.h3>
-              
+
               <motion.div className="space-y-6">
-                <ContactItem 
-                  icon={
-                    <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  }
+                <ContactItem
+                  icon={<Envelope size={20} weight="duotone" />}
                   label="Email"
                   value="yashpandya0411@gmail.com"
                   href="mailto:yashpandya0411@gmail.com"
                 />
-                
-                <ContactItem 
-                  icon={
-                    <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  }
+
+                <ContactItem
+                  icon={<Phone size={20} weight="duotone" />}
                   label="Phone"
                   value="07563041197"
                   href="tel:07563041197"
                 />
-                
-                <ContactItem 
-                  icon={
-                    <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-                    </svg>
-                  }
+
+                <ContactItem
+                  icon={<ChatCircleDots size={20} weight="duotone" />}
                   label="Social Profiles"
                 >
                   <div className="flex space-x-4 mt-2">
-                    <motion.a 
-                      href="https://linkedin.com/in/yash-pandya-data" 
-                      target="_blank" 
+                    <motion.a
+                      href="https://linkedin.com/in/yash-pandya-data"
+                      target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-700 hover:text-primary transition-colors py-1"
+                      className="inline-flex items-center gap-1.5 text-gray-700 hover:text-primary transition-colors py-1"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
+                      <LinkedinLogo size={18} weight="duotone" />
                       LinkedIn
                     </motion.a>
-                    <motion.a 
-                      href="https://github.com/yash041197" 
-                      target="_blank" 
+                    <motion.a
+                      href="https://github.com/yash041197"
+                      target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-700 hover:text-primary transition-colors py-1"
+                      className="inline-flex items-center gap-1.5 text-gray-700 hover:text-primary transition-colors py-1"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
+                      <GithubLogo size={18} weight="duotone" />
                       GitHub
                     </motion.a>
                   </div>
                 </ContactItem>
               </motion.div>
             </div>
-            
-            {/* Current availability notice with Apple-style touch animation */}
+
             <motion.div
               ref={availabilityCardRef}
               style={availabilityCardStyle}
               {...availabilityCardHandlers}
-              variants={itemVariants} 
+              variants={itemVariants}
               className="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-2xl transition-all duration-300"
             >
               <h4 className="font-medium mb-2">Current Availability</h4>
               <p className="text-sm text-gray-600">
                 I'm currently available for freelance projects, contract work, or full-time opportunities in AI engineering and technical leadership.
               </p>
-              
-              {/* Apple-style active indicator animation */}
-              <motion.div 
-                className="w-12 h-1 bg-blue-200 rounded-full mt-4 mx-auto"
-                animate={{ 
-                  opacity: [0.3, 0.7, 0.3],
-                  transition: { 
-                    duration: 2, 
-                    repeat: Infinity, 
-                    ease: "easeInOut" 
-                  }
-                }}
-              />
             </motion.div>
           </motion.div>
-          
-          {/* Apple-style form with touch animations */}
+
           <motion.div
             ref={formCardRef}
             style={formCardStyle}
@@ -349,18 +317,18 @@ const Contact = () => {
             className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 transition-all duration-300"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ 
+            transition={{
               duration: 0.5,
               delay: 0.3,
-              ease: [0.32, 0.72, 0, 1] // Apple-style easing curve
+              ease: [0.32, 0.72, 0, 1]
             }}
+            viewport={{ once: true }}
           >
             <h3 className="text-xl font-semibold mb-6">Send a Message</h3>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              {/* Name field with touch animation */}
               <div>
-                <motion.label 
-                  htmlFor="name" 
+                <motion.label
+                  htmlFor="name"
                   className={`block text-sm font-medium ${activeField === 'name' ? 'text-primary' : 'text-gray-700'} mb-1 transition-colors duration-200`}
                   animate={{ scale: activeField === 'name' ? 1.03 : 1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -368,27 +336,27 @@ const Contact = () => {
                   Name
                 </motion.label>
                 <motion.div
-                  animate={{ 
+                  animate={{
                     y: activeField === 'name' ? -2 : 0,
-                    scale: activeField === 'name' ? 1.01 : 1 
+                    scale: activeField === 'name' ? 1.01 : 1
                   }}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 >
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     id="name"
                     className={`w-full px-4 py-3 rounded-lg border ${
                       errors.name ? 'border-red-500' : activeField === 'name' ? 'border-primary shadow-sm' : 'border-gray-200'
                     } focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200`}
                     placeholder="Your name"
                     onFocus={() => handleFocus('name')}
-                    {...register("name", { 
+                    {...register("name", {
                       required: true,
                       onBlur: handleBlur
                     })}
                   />
                   {errors.name && (
-                    <motion.p 
+                    <motion.p
                       className="mt-1 text-red-500 text-sm"
                       initial={{ opacity: 0, y: -5 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -399,11 +367,10 @@ const Contact = () => {
                   )}
                 </motion.div>
               </div>
-              
-              {/* Email field with touch animation */}
+
               <div>
-                <motion.label 
-                  htmlFor="email" 
+                <motion.label
+                  htmlFor="email"
                   className={`block text-sm font-medium ${activeField === 'email' ? 'text-primary' : 'text-gray-700'} mb-1 transition-colors duration-200`}
                   animate={{ scale: activeField === 'email' ? 1.03 : 1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -411,21 +378,21 @@ const Contact = () => {
                   Email
                 </motion.label>
                 <motion.div
-                  animate={{ 
+                  animate={{
                     y: activeField === 'email' ? -2 : 0,
-                    scale: activeField === 'email' ? 1.01 : 1 
+                    scale: activeField === 'email' ? 1.01 : 1
                   }}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 >
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     id="email"
                     className={`w-full px-4 py-3 rounded-lg border ${
                       errors.email ? 'border-red-500' : activeField === 'email' ? 'border-primary shadow-sm' : 'border-gray-200'
                     } focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200`}
                     placeholder="Your email"
                     onFocus={() => handleFocus('email')}
-                    {...register("email", { 
+                    {...register("email", {
                       required: true,
                       onBlur: handleBlur,
                       pattern: {
@@ -435,7 +402,7 @@ const Contact = () => {
                     })}
                   />
                   {errors.email && (
-                    <motion.p 
+                    <motion.p
                       className="mt-1 text-red-500 text-sm"
                       initial={{ opacity: 0, y: -5 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -446,11 +413,10 @@ const Contact = () => {
                   )}
                 </motion.div>
               </div>
-              
-              {/* Message field with touch animation */}
+
               <div>
-                <motion.label 
-                  htmlFor="project" 
+                <motion.label
+                  htmlFor="project"
                   className={`block text-sm font-medium ${activeField === 'project' ? 'text-primary' : 'text-gray-700'} mb-1 transition-colors duration-200`}
                   animate={{ scale: activeField === 'project' ? 1.03 : 1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -458,13 +424,13 @@ const Contact = () => {
                   How can I help?
                 </motion.label>
                 <motion.div
-                  animate={{ 
+                  animate={{
                     y: activeField === 'project' ? -2 : 0,
-                    scale: activeField === 'project' ? 1.01 : 1 
+                    scale: activeField === 'project' ? 1.01 : 1
                   }}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 >
-                  <textarea 
+                  <textarea
                     id="project"
                     rows={4}
                     className={`w-full px-4 py-3 rounded-lg border ${
@@ -472,13 +438,13 @@ const Contact = () => {
                     } focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200`}
                     placeholder="Tell me about your project or inquiry"
                     onFocus={() => handleFocus('project')}
-                    {...register("project", { 
+                    {...register("project", {
                       required: true,
                       onBlur: handleBlur
                     })}
                   ></textarea>
                   {errors.project && (
-                    <motion.p 
+                    <motion.p
                       className="mt-1 text-red-500 text-sm"
                       initial={{ opacity: 0, y: -5 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -489,18 +455,17 @@ const Contact = () => {
                   )}
                 </motion.div>
               </div>
-              
-              {/* Submit button with haptic-simulating animation */}
+
               <motion.div
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
-                <button 
+                <button
                   ref={submitButtonRef}
-                  type="submit" 
+                  type="submit"
                   className="w-full inline-flex justify-center items-center rounded-full bg-primary px-6 py-3.5 text-base font-medium text-white hover:bg-blue-600 active:bg-blue-700 transition-all duration-300 disabled:opacity-70"
                   disabled={isSubmitting}
-                  style={{ 
+                  style={{
                     transition: 'transform 0.2s cubic-bezier(0.32, 0.72, 0, 1)'
                   }}
                 >
@@ -517,22 +482,6 @@ const Contact = () => {
             </form>
           </motion.div>
         </div>
-        
-        {/* iOS-style scroll indicator for mobile */}
-        <motion.div 
-          className="flex justify-center mt-16 md:hidden"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.7 }}
-          transition={{ delay: 1 }}
-        >
-          <motion.div 
-            className="w-12 h-1 bg-gray-300 rounded-full"
-            animate={{ 
-              opacity: [0.3, 0.6, 0.3],
-              transition: { duration: 2, repeat: Infinity, ease: "easeInOut" }
-            }}
-          />
-        </motion.div>
       </div>
     </section>
   );

@@ -110,19 +110,12 @@ const Process = () => {
       <div className="max-w-7xl mx-auto">
         {/* Apple-style heading */}
         <div className="text-center mb-16">
-          <motion.p 
-            className="text-primary font-medium mb-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            CAREER PATH
-          </motion.p>
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-5xl font-semibold mb-4"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
           >
             Work Experience
           </motion.h2>

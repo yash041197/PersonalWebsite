@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import useTouchInteractions from "@/hooks/use-touch-interactions";
 import { useState } from "react";
+import { Eye, ArrowRight, X } from "@phosphor-icons/react";
 
 import omnipaImage from "../assets/omnipa.webp";
 import modernisationImage from "../assets/modernisation.svg";
@@ -164,22 +165,10 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[number] & 
                 setIsExpanded(true);
               }}
             >
-              <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
+              <Eye size={24} weight="duotone" className="text-primary" />
             </div>
           </div>
           
-          {/* iOS-style indicator for mobile users */}
-          <div className="absolute bottom-3 left-0 right-0 flex justify-center md:hidden">
-            <motion.div 
-              className="w-10 h-1 bg-white/50 rounded-full"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.7 }}
-              transition={{ delay: 0.5 }}
-            />
-          </div>
         </div>
         
         <div className="p-6 md:p-8">
@@ -239,9 +228,7 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[number] & 
               whileTap={{ scale: 0.95 }}
             >
               <span className="mr-1">Visit site</span>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+              <ArrowRight size={16} weight="bold" />
             </motion.a>
           </motion.div>
           )}
@@ -282,9 +269,7 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[number] & 
                 setIsExpanded(false);
               }}
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <X size={20} weight="bold" />
             </button>
             
             {/* Preview image */}
@@ -334,19 +319,12 @@ const FeaturedProjects = () => {
       <div className="max-w-7xl mx-auto">
         {/* Apple-style heading with subtitle */}
         <div className="mb-16 text-center">
-          <motion.p 
-            className="text-primary font-medium mb-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            FEATURED WORK
-          </motion.p>
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-5xl font-semibold"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
           >
             Selected Work
           </motion.h2>

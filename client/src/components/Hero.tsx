@@ -52,13 +52,13 @@ const Hero = () => {
         <div className="grid md:grid-cols-2 gap-10 md:gap-20 items-center">
           {/* Text content - enhanced for better mobile readability */}
           <div>
-            <motion.h1 
+            <motion.h1
               className="text-sm md:text-base font-semibold text-primary mb-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
             >
-              Yash Pandya — AI Systems & Platform Engineer
+              Yash Pandya, AI Systems & Platform Engineer
             </motion.h1>
             
             {/* Responsive text sizing for better mobile experience */}
@@ -198,16 +198,6 @@ const Hero = () => {
             ))}
           </div>
           
-          {/* Scroll indicator (Apple-style) */}
-          <div className="hidden md:flex justify-center mt-4">
-            <motion.div 
-              className="w-12 h-1 bg-gray-200 rounded-full"
-              animate={{ 
-                opacity: [0.3, 0.6, 0.3],
-                transition: { duration: 2, repeat: Infinity, ease: "easeInOut" }
-              }}
-            />
-          </div>
         </motion.div>
       </div>
     </section>
